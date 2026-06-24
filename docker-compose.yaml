@@ -1,0 +1,11 @@
+services:
+  lektor-site:
+    build: .
+    stdin_open: true
+    tty: true
+    environment:
+      - ADDITIONAL_PATH=/site/venv/bin
+    volumes: [ .:/site/shared ]
+    working_dir: /site/shared
+    ports: [ 8888:8888 ]
+    command: "lektor server -h 0.0.0.0 -p 8888 -O /site/shared/build"
